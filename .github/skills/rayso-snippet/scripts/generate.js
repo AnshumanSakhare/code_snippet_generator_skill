@@ -70,13 +70,14 @@ async function main() {
 
   // Resolve the code to render
   let code = args.code;
+  let tempFilePath = null; // track temp file for cleanup
   if (!code && args.file) {
-    const filePath = path.resolve(args.file);
-    if (!fs.existsSync(filePath)) {
-      console.error(`Error: file not found: ${filePath}`);
+    tempFilePath = path.resolve(args.file);
+    if (!fs.existsSync(tempFilePath)) {
+      console.error(`Error: file not found: ${tempFilePath}`);
       process.exit(1);
     }
-    code = fs.readFileSync(filePath, 'utf8');
+    code = fs.readFileSync(tempFilePath, 'utf8');
   }
 
   if (!code) {
@@ -141,6 +142,12 @@ async function main() {
     });
 
     console.log(`\nSaved snippet to: ${outputPath}`);
+
+    // Auto-cleanup: delete the temp input file (unless --keepTempFile is set)
+    if (tempFilePath && args.keepTempFile !== 'true') {
+      fs.unlinkSync(tempFilePath);
+      console.log(`Cleaned up temp file: ${tempFilePath}`);
+    }
   } finally {
     await browser.close();
   }

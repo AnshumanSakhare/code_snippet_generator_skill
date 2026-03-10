@@ -39,6 +39,7 @@ Collect the following from the user's request. Defaults are shown:
 | `padding`    | `32`        | `16`, `32`, `64`, `128` |
 | `title`      | `Untitled`  | any string |
 | `output`     | `snippet.png` | filename or path |
+| `keepTempFile` | `false`   | `true`, `false` — set to `true` to keep the temp input file |
 
 ### Step 2 — Run the Generator
 
@@ -77,6 +78,8 @@ node .github/skills/rayso-snippet/scripts/generate.js --file ./mycode.js --langu
 ### Step 4 — Confirm Output
 
 After the script runs, confirm the PNG was saved at the specified `--output` path and show it to the user.
+
+The temp input file (passed via `--file`) is **automatically deleted** after the PNG is saved. Pass `--keepTempFile true` to skip deletion.
 
 ## Theme Previews
 
