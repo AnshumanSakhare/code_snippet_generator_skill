@@ -1,0 +1,15 @@
+{
+  "name": "rayso-snippet-generator",
+  "version": "1.0.0",
+  "description": "Generates code snippet PNG images via ray.so automation",
+  "main": "generate.js",
+  "scripts": {
+    "generate": "node generate.js"
+  },
+  "dependencies": {
+    "puppeteer": "^22.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

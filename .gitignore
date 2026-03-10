@@ -1,0 +1,9 @@
+# Node dependencies
+node_modules/
+
+# Generated snippet outputs
+*.png
+
+# Temp files
+debug_selector.js
+snippet_code.py
